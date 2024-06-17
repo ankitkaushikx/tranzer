@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TransactionController;
+
 
 Route::view('/', 'welcome');
 
@@ -13,3 +15,7 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 require __DIR__.'/auth.php';
+
+
+// Transaction Routes
+Route::resource('transactions', TransactionController::class);

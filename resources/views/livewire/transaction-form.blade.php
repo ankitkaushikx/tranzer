@@ -4,7 +4,7 @@
     <div class="flex justify-between items-center">
       <div class="flex items-center border border-gray-300 rounded bg-slate-700 flex-grow">
         <span class="px-2 text-gray-100 ">₹</span>
-        <input type="number" name="amount" id="amount" class="flex-grow p-2 focus:outline-none" placeholder="Amount">
+        <input type="number" name="amount" id="amount" class="flex-grow p-2 focus:outline-none" placeholder="Amount" step="0.01">
       </div>
     </div>
 
