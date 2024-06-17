@@ -30,6 +30,7 @@ class TransactionController extends Controller
     public function create()
     {
         //
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -37,8 +38,30 @@ class TransactionController extends Controller
      */
     public function store(StoreTransactionRequest $request)
     {
-        //
+        $fields = $request->validate([
+            'amount' => ['required', 'numeric'],
+            'detail' => ['nullable', 'max:230', 'string'],
+            'type' => 'required|in:buy,sell',
+        ]);
+
+        // Remove negative sign if present
+        $amount = abs($fields['amount']);
+
+        // If type is buy, make the amount negative
+        if ($fields['type'] === 'buy') {
+            $amount = -$amount;
+        }
+
+        // Create New Transaction
+        $transaction = Auth::user()->transactions()->create([
+            'amount' => $amount,
+            'detail' => $fields['detail'] ?? '',
+            'type' => $fields['type'],
+        ]);
+
+        return back()->with('success', "New Transaction Added");
     }
+
 
     /**
      * Display the specified resource.
@@ -72,3 +95,4 @@ class TransactionController extends Controller
         //
     }
 }
+

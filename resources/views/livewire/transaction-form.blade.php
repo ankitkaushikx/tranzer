@@ -1,16 +1,23 @@
 <div>
-  <form action="" method="post">
+  <form action="{{route('transactions.store')}}" method="post">
+    @csrf
     {{-- Main Input --}}
-    <div class="flex justify-between items-center">
-      <div class="flex items-center border border-gray-300 rounded bg-slate-700 flex-grow">
+    <div class="flex justify-between items-center flex-wrap">
+      <div class="flex  items-center border border-gray-300 rounded bg-slate-700 w-100 flex-grow">
         <span class="px-2 text-gray-100 ">₹</span>
-        <input type="number" name="amount" id="amount" class="flex-grow p-2 focus:outline-none" placeholder="Amount" step="0.01">
+        <input type="number" name="amount" id="amount" class="flex-grow p-2 focus:outline-none @error('amount') ring-red-500 @enderror" placeholder="Amount" step="0.01">
       </div>
+      @error('amount')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+        @enderror
     </div>
 
     {{-- Details TextArea --}}
    <div class="mb-4 mt-1">
-      <textarea name="details" id="details" rows="3" class="w-full p-2 border border-gray-300 rounded resize-y text-[1.1rem] focus:outline-none" placeholder="Add details..."></textarea>
+      <textarea name="detail" id="detail" rows="3" class="w-full p-2 border border-gray-300 rounded resize-y text-[1.1rem] focus:outline-none  @error('detail') ring-red-500 @enderror" placeholder="Add details..."></textarea>
+      @error('detail')
+                    <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+      @enderror
     </div>
 
     {{-- Transaction Type Selector and / Submit Button --}}
