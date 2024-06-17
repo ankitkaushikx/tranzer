@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class transaction-card extends Component
+class transactionCard extends Component
 {
     /**
      * Create a new component instance.
@@ -21,6 +21,6 @@ class transaction-card extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.transaction-card');
+        return view('components.transactionCard');
     }
 }

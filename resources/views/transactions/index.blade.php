@@ -4,7 +4,10 @@
             {{ __('All Transactions') }}
         </h2>
     </x-slot>
+    <div class="p-1 ">
+     {{$transactions->links()}}
+     </div>
   @foreach ($transactions as $transaction )
-    <li>{{$transaction}}</li>
+ <x-transaction-card :transaction="$transaction" />
   @endforeach
 </x-app-layout>
