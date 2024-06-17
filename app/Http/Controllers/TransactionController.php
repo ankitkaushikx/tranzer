@@ -15,9 +15,10 @@ class TransactionController extends Controller
     public function index()
     {
         
-        $transactions = Transaction::where('user_id',Auth::id())
-        ->latest()
-        ->paginate(10);
+    $transactions = Transaction::where('user_id', Auth::id())
+    ->orderBy('created_at', 'desc') // Order by created_at in descending order
+    ->paginate(10);
+
 
         //now return the view
         return view('transactions.index', ['transactions' => $transactions]);
