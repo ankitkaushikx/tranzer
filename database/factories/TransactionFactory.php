@@ -28,7 +28,7 @@ class TransactionFactory extends Factory
         return [
             'user_id' => 1, // Hardcoded user ID for example, replace as needed
             'amount' => $amount,
-            'detail' => $this->faker->paragraph(),
+            'detail' => $this->faker->sentence(),
             'type' => $type,
         ];
     }

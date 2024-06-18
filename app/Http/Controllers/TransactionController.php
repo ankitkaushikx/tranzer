@@ -6,6 +6,8 @@ use App\Models\Transaction;
 use App\Http\Requests\StoreTransactionRequest;
 use App\Http\Requests\UpdateTransactionRequest;
 use Illuminate\Support\Facades\Auth;
+use Rap2hpoutre\FastExcel\FastExcel;
+use Illuminate\Support\Carbon; // Include Carbon for date handling
 
 class TransactionController extends Controller
 {
@@ -94,5 +96,29 @@ class TransactionController extends Controller
     {
         //
     }
+     /**
+     * Remove the specified resource from storage.
+     */
+
+            
+        public function exportTransactions()
+        {
+            $today = Carbon::today()->toDateString();
+            $transactions = Transaction::where('user_id', Auth::id())
+                ->whereDate('updated_at', $today) // Filter by today's transactions
+                ->orderByDesc('updated_at') // Order by updated_at descending
+                ->get(['id', 'amount', 'detail', 'type', 'updated_at']); // Fetch only required columns
+
+            $formattedTransactions = $transactions->map(function ($transaction) {
+                return [
+                    'ID' => $transaction->id,
+                     'Amount' => $transaction->type === 'buy' ? -$transaction->amount : $transaction->amount, // Add negative sign if type is 'buy'
+                    'Detail' => $transaction->detail,
+                    'Date' => Carbon::parse($transaction->updated_at)->format('d-m-Y'), // Format date as DD-MM-YYYY
+                ];
+            });
+
+            return (new FastExcel($formattedTransactions))->download($today . '_tranzer.xlsx');
+        }
 }
 

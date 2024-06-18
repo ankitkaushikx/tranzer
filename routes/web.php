@@ -3,6 +3,7 @@
 use App\Http\Controllers\DashboardController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TransactionController;
+use Rap2hpoutre\FastExcel\FastExcel;
 
 
 Route::view('/', 'welcome');
@@ -18,3 +19,6 @@ require __DIR__.'/auth.php';
 
 // Transaction Routes
 Route::resource('transactions', TransactionController::class);
+
+//Transaction Exports 
+Route::get('/export-transactions', [TransactionController::class, 'exportTransactions'])->middleware('verified')->name('transactions.export');

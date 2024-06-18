@@ -21,12 +21,12 @@
         Today's Transactions
     </div>
                     <div class="text-md flex">
-                        <button class="btn flex items-center bg-white rounded-md p-2">
+                        <a href="{{route('transactions.export')}}"><button class="btn flex items-center bg-white rounded-md p-2">
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M3 3a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v3h2a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h2V3zm2 7h10v7H5V10zm2 1a1 1 0 0 0 0 2h6a1 1 0 0 0 0-2H7z" clip-rule="evenodd" />
                             </svg>
                             Download
-                        </button>
+                        </button></a>
                         <a href="" class="btn btn-border-green ml-2 self-center text-md flex-grow">View All</a>
                     </div>
                 </div>
