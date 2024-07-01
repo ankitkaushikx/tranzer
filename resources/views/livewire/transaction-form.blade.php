@@ -4,8 +4,8 @@
     {{-- Main Input --}}
     <div class="flex justify-between items-center flex-wrap">
       <div class="flex  items-center border border-gray-300 rounded bg-slate-700 w-100 flex-grow">
-        <span class="px-2 text-gray-100 ">₹</span>
-        <input type="number" name="amount" id="amount" class="flex-grow p-2 focus:outline-none @error('amount') ring-red-500 @enderror" placeholder="Amount" step="0.01">
+        <span class="px-2 light:text-white text-black">₹</span>
+        <input type="number" name="amount" id="amount" class=" text-black flex-grow p-2 focus:outline-none @error('amount') ring-red-500 @enderror" placeholder="Amount" step="0.01" value="{{old('amount')}} ">
       </div>
       @error('amount')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -14,7 +14,7 @@
 
     {{-- Details TextArea --}}
    <div class="mb-4 mt-1">
-      <textarea name="detail" id="detail" rows="3" class="w-full p-2 border border-gray-300 rounded resize-y text-[1.1rem] focus:outline-none  @error('detail') ring-red-500 @enderror" placeholder="Add details..."></textarea>
+      <textarea name="detail" id="detail" rows="3" class=" text-black w-full p-2 border border-gray-300 rounded resize-y text-[1.1rem] focus:outline-none  @error('detail') ring-red-500 @enderror" placeholder="Add details..." value="{{old('detail')}}"></textarea>
       @error('detail')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
       @enderror
